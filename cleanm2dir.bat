@@ -1,0 +1,1 @@
+RD /S /Q %USERPROFILE%\.m2

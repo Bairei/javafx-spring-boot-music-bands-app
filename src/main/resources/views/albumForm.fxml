@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane styleClass="background" stylesheets="@../static/css/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bairei.javafxapp.controllers.AlbumFormController">
+   <children>
+      <GridPane layoutX="60.0" layoutY="28.0" prefHeight="234.0" prefWidth="334.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Name:">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Recorded by:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Released in:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Label:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Genre:" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Members:" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="genreChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="labelChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ListView fx:id="memberListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+            <ChoiceBox fx:id="bandChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nameField" minHeight="-Infinity" prefHeight="30.0" styleClass="text-field" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="yearField" minHeight="-Infinity" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="NEVER" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleNewMemberForm" prefHeight="33.0" prefWidth="137.0" text="New Member" GridPane.rowIndex="7" />
+            <Button minWidth="0.0" mnemonicParsing="false" onAction="#handleNewLabelForm" prefHeight="33.0" prefWidth="136.0" text="New Label" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <ButtonBar layoutX="220.0" layoutY="272.0" prefHeight="40.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+        <buttons>
+            <Button defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewAlbum" prefHeight="32.0" prefWidth="115.0" text="Create" />
+          <Button cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnToIntro" prefHeight="32.0" prefWidth="115.0" text="Cancel" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
