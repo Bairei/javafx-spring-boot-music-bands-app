@@ -21,10 +21,10 @@ public class Band {
 
     private String name;
 
-    @Min(1900) @Max(2017)
+    @Min(1900) @Max(2018)
     private Integer yearFounded;
 
-    @Min(1900) @Max(2017)
+    @Min(1900) @Max(2018)
     private Integer yearDisbanded;
 
     @Enumerated(value = EnumType.STRING)

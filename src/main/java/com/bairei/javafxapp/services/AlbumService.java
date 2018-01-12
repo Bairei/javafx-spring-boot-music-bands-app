@@ -10,4 +10,8 @@ public interface AlbumService {
     void delete(Album selectedAlbum);
 
     Album save(Album selectedAlbum);
+
+    List<Album> findAlbumsByTitleContainingIgnoreCaseAndYearOfReleaseBetween(String phrase, Integer from, Integer to);
+
+    List<Album> findAlbumsByYearOfReleaseBetween(Integer from, Integer to);
 }

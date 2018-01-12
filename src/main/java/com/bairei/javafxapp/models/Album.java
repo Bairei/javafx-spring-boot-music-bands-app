@@ -6,7 +6,6 @@ import javax.validation.constraints.Min;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -24,7 +23,7 @@ public class Album {
     @ManyToOne
     private Band band;
 
-    @Min(1900) @Max(2017)
+    @Min(1900) @Max(2018)
     private Integer yearOfRelease;
 
     @Enumerated(value = EnumType.STRING)

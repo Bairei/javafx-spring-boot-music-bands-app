@@ -50,4 +50,14 @@ public class AlbumServiceImpl implements AlbumService {
     public Album save(Album selectedAlbum) {
         return albumRepository.save(selectedAlbum);
     }
+
+    @Override
+    public List<Album> findAlbumsByTitleContainingIgnoreCaseAndYearOfReleaseBetween(String phrase, Integer from, Integer to) {
+        return albumRepository.findAlbumsByTitleContainingIgnoreCaseAndYearOfReleaseBetween(phrase, from, to);
+    }
+
+    @Override
+    public List<Album> findAlbumsByYearOfReleaseBetween(Integer from, Integer to) {
+        return albumRepository.findAlbumsByYearOfReleaseBetween(from, to);
+    }
 }

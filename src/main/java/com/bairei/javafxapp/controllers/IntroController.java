@@ -3,6 +3,7 @@ package com.bairei.javafxapp.controllers;
 import com.bairei.javafxapp.JavafxappApplication;
 import com.bairei.javafxapp.controllers.utils.UtilController;
 import com.bairei.javafxapp.models.Album;
+import com.bairei.javafxapp.models.Band;
 import com.bairei.javafxapp.repositories.AlbumRepository;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -73,11 +74,11 @@ public class IntroController {
     }
     @FXML
     private void handleNewBandForm(Event event){
-        UtilController.handleBandForm(event, getMain(), null);
+        UtilController.handleBandForm(event, getMain(), new Band());
     }
     @FXML
     private void handleAlbumForm (Event event){
-        UtilController.handleAlbumForm(event, getMain(), null);
+        UtilController.handleAlbumForm(event, getMain(), new Album());
     }
     @FXML
     private void handleAllBands(Event event){

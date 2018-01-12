@@ -87,7 +87,7 @@ public class BandResultsController {
             } else {
                 yearDisbandedLabel.setText(Integer.toString(band.getYearDisbanded()));
             }
-            genreLabel.setText(band.getGenre().name());
+            genreLabel.setText(band.getGenre().getName());
             membersListView.setItems(FXCollections.observableArrayList(band.getMembers()));
             List<Album> albums = new ArrayList<>(band.getAlbums());
             albumsListView.setItems(FXCollections.observableArrayList(albums));

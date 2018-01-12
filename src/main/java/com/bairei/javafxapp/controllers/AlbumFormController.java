@@ -3,18 +3,20 @@ package com.bairei.javafxapp.controllers;
 import com.bairei.javafxapp.JavafxappApplication;
 import com.bairei.javafxapp.controllers.utils.UtilController;
 import com.bairei.javafxapp.models.*;
-import com.bairei.javafxapp.models.Label;
-import com.bairei.javafxapp.repositories.AlbumRepository;
-import com.bairei.javafxapp.repositories.BandRepository;
 import com.bairei.javafxapp.repositories.LabelRepository;
 import com.bairei.javafxapp.repositories.MemberRepository;
+import com.bairei.javafxapp.services.AlbumService;
+import com.bairei.javafxapp.services.BandService;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,8 +40,8 @@ public class AlbumFormController {
     private JavafxappApplication main;
     private Stage dialogStage;
 
-    private BandRepository bandRepository;
-    private AlbumRepository albumRepository;
+    private BandService bandService;
+    private AlbumService albumService;
     private MemberRepository memberRepository;
     private LabelRepository labelRepository;
 
@@ -66,13 +68,13 @@ public class AlbumFormController {
     }
 
     @Autowired
-    public void setBandRepository(BandRepository bandRepository){
-        this.bandRepository = bandRepository;
+    public void setBandService(BandService bandService){
+        this.bandService = bandService;
     }
 
     @Autowired
-    public void setAlbumRepository(AlbumRepository albumRepository){
-        this.albumRepository = albumRepository;
+    public void setAlbumService(AlbumService albumService){
+        this.albumService = albumService;
     }
 
     @Autowired
@@ -92,18 +94,15 @@ public class AlbumFormController {
                 nameField.setText(album.getTitle());
             }
             if (album.getBand() != null){
-                // log.info(String.valueOf(bandChoiceBox.getItems().indexOf(album.getBand())));
                 bandChoiceBox.getSelectionModel().select(bandChoiceBox.getItems().indexOf(album.getBand()));
             }
             if (album.getGenre() != null){
-                // log.info("genre");
                 genreChoiceBox.getSelectionModel().select(album.getGenre());
             }
             if (album.getYearOfRelease() != null){
                 yearField.setText(String.valueOf(album.getYearOfRelease()));
             }
             if (album.getLabel() != null){
-                // log.info("label");
                 labelChoiceBox.getSelectionModel().select(album.getLabel());
             }
             if (album.getMembers() != null && album.getMembers().size() > 0){
@@ -117,7 +116,7 @@ public class AlbumFormController {
 
     @FXML
     private void initialize(){
-        bandChoiceBox.setItems(FXCollections.observableArrayList(bandRepository.findAll()));
+        bandChoiceBox.setItems(FXCollections.observableArrayList(bandService.findAll()));
         labelChoiceBox.setItems(FXCollections.observableArrayList(labelRepository.findAll()));
         genreChoiceBox.setItems(FXCollections.observableArrayList(Genre.values()));
         memberListView.setItems(FXCollections.observableArrayList(memberRepository.findAll()));
@@ -157,10 +156,8 @@ public class AlbumFormController {
                 return;
             }
             album.setMembers(new HashSet<>(members));
-            albumRepository.save(album);
-            //log.info(albumRepository.findAll().toString());
-            //log.info(album.getTitle() + " " + album.getBand().getName());
-            bandRepository.save(album.getBand());
+            albumService.save(album);
+            bandService.save(album.getBand());
             returnToIntro(event);
         } else {
             UtilController.displayEmptyInput(event, getMain());

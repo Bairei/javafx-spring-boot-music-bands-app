@@ -9,9 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BandRepository extends JpaRepository <Band, Long> {
-    Band findBandByName(String name);
-    List<Band> findBandsByMembersContaining(Member member);
-    List<Band> findBandsByNameContainingIgnoreCase(String name);
     List<Band> findBandsByNameContainingIgnoreCaseAndYearFoundedBetween(String name, Integer from, Integer to);
     List<Band> findBandsByYearFoundedBetween(Integer from, Integer to);
 }

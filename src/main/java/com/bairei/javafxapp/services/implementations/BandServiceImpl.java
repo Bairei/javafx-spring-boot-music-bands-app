@@ -34,4 +34,14 @@ public class BandServiceImpl implements BandService {
     public Band save(Band band) {
         return bandRepository.save(band);
     }
+
+    @Override
+    public List<Band> findBandsByNameContainingIgnoreCaseAndYearFoundedBetween(String phrase, Integer from, Integer to) {
+        return bandRepository.findBandsByNameContainingIgnoreCaseAndYearFoundedBetween(phrase, from, to);
+    }
+
+    @Override
+    public List<Band> findBandsByYearFoundedBetween(Integer from, Integer to) {
+        return bandRepository.findBandsByYearFoundedBetween(from, to);
+    }
 }

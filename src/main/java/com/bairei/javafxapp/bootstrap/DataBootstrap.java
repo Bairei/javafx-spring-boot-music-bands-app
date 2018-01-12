@@ -70,13 +70,13 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         memberRepository.save(Arrays.asList(jh,kk, ta, dl, gh, pb));
 
         slayer.setMembers(new HashSet<>(Arrays.asList(gh,kk,ta,pb)));
-        slayer.setGenre(Genre.THRASH_METAL);
+        slayer.setGenre(Genre.THRASH);
         slayer.setYearFounded(1981);
         //slayer.setYearDisbanded(2017);
 
         Album rib = new Album();
         rib.setBand(slayer);
-        rib.setGenre(Genre.THRASH_METAL);
+        rib.setGenre(Genre.THRASH);
         rib.setYearOfRelease(1986);
         rib.setMembers(new HashSet<>(Arrays.asList(jh,kk,ta,dl)));
         rib.setTitle("Reign in Blood");
@@ -84,7 +84,7 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
 
         Album sita = new Album();
         sita.setBand(slayer);
-        sita.setGenre(Genre.THRASH_METAL);
+        sita.setGenre(Genre.THRASH);
         sita.setYearOfRelease(1990);
         sita.setMembers(new HashSet<>(Arrays.asList(jh,kk,ta,dl)));
         sita.setTitle("Seasons In The Abyss");
@@ -93,7 +93,7 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         Album repentless = new Album();
         repentless.setTitle("Repentless");
         repentless.setBand(slayer);
-        repentless.setGenre(Genre.THRASH_METAL);
+        repentless.setGenre(Genre.THRASH);
         repentless.setYearOfRelease(2015);
         repentless.setMembers(new HashSet<>(Arrays.asList(kk,ta,gh,pb)));
         repentless.setLabel(nuclearBlast);

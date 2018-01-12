@@ -6,6 +6,8 @@ import com.bairei.javafxapp.models.Album;
 import com.bairei.javafxapp.models.Band;
 import com.bairei.javafxapp.repositories.AlbumRepository;
 import com.bairei.javafxapp.repositories.BandRepository;
+import com.bairei.javafxapp.services.AlbumService;
+import com.bairei.javafxapp.services.BandService;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -16,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -27,8 +30,8 @@ public class SearchController {
     private Stage dialogStage;
     private String origin;
 
-    private AlbumRepository albumRepository;
-    private BandRepository bandRepository;
+    private AlbumService albumService;
+    private BandService bandService;
 
     @FXML
     private TextField phraseInput;
@@ -40,13 +43,13 @@ public class SearchController {
     public SearchController(){}
 
     @Autowired
-    public void setAlbumRepository(AlbumRepository albumRepository){
-        this.albumRepository = albumRepository;
+    public void setAlbumRepository(AlbumService albumService){
+        this.albumService = albumService;
     }
 
     @Autowired
-    public void setBandRepository(BandRepository bandRepository){
-        this.bandRepository = bandRepository;
+    public void setBandRepository(BandService bandService){
+        this.bandService = bandService;
     }
 
     @FXML
@@ -56,7 +59,7 @@ public class SearchController {
             phrase = phraseInput.getText();
         }
         Integer from = 1900;
-        Integer to = 2017;
+        Integer to = LocalDate.now().getYear();
         try {
             if(fromYearInput.getText() != null && !fromYearInput.getText().isEmpty()){
 
@@ -80,17 +83,17 @@ public class SearchController {
         List<Band> bands = null;
         if(!phrase.isEmpty()){
             if (origin.equals("albumButton")){
-                albums = albumRepository.findAlbumsByTitleContainingIgnoreCaseAndYearOfReleaseBetween(phrase, from, to);
+                albums = albumService.findAlbumsByTitleContainingIgnoreCaseAndYearOfReleaseBetween(phrase, from, to);
                 log.info(String.valueOf(albums.size()));
             } else {
-                bands = bandRepository.findBandsByNameContainingIgnoreCaseAndYearFoundedBetween(phrase, from, to);
+                bands = bandService.findBandsByNameContainingIgnoreCaseAndYearFoundedBetween(phrase, from, to);
             }
         } else {
             log.info("empty");
             if(origin.equals("albumButton")){
-                albums = albumRepository.findAlbumsByYearOfReleaseBetween(from, to);
+                albums = albumService.findAlbumsByYearOfReleaseBetween(from, to);
             } else {
-                bands = bandRepository.findBandsByYearFoundedBetween(from, to);
+                bands = bandService.findBandsByYearFoundedBetween(from, to);
             }
         }
         if(albums != null){

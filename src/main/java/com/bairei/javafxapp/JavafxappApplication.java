@@ -29,7 +29,7 @@ public class JavafxappApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
-		primaryStage.setTitle("Hello");
+		primaryStage.setTitle("BandsApp - JavaFX application");
 		pane = (BorderPane) root;
 		Scene scene = new Scene(pane);
 		primaryStage.setScene(scene);

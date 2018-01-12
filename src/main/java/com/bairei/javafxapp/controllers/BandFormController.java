@@ -5,7 +5,7 @@ import com.bairei.javafxapp.controllers.utils.UtilController;
 import com.bairei.javafxapp.models.Band;
 import com.bairei.javafxapp.models.Genre;
 import com.bairei.javafxapp.models.Member;
-import com.bairei.javafxapp.repositories.BandRepository;
+import com.bairei.javafxapp.services.BandService;
 import com.bairei.javafxapp.repositories.LabelRepository;
 import com.bairei.javafxapp.repositories.MemberRepository;
 import javafx.collections.FXCollections;
@@ -37,7 +37,7 @@ public class BandFormController {
 
     private MemberRepository memberRepository;
     private LabelRepository labelRepository;
-    private BandRepository bandRepository;
+    private BandService bandService;
 
     @FXML
     private TextField nameField;
@@ -56,8 +56,8 @@ public class BandFormController {
     private boolean isOkClicked = false;
 
     @Autowired
-    public void setBandRepository(BandRepository bandRepository){
-        this.bandRepository = bandRepository;
+    public void setBandService(BandService bandService){
+        this.bandService = bandService;
     }
 
     @Autowired
@@ -141,8 +141,7 @@ public class BandFormController {
                 return;
             }
             band.setMembers(new HashSet<>(members));
-            bandRepository.save(band);
-            // log.info(String.valueOf(bandRepository.findBandByName(band.getName())));
+            bandService.save(band);
             returnToIntro(event);
         } else {
             UtilController.displayEmptyInput(event, getMain());

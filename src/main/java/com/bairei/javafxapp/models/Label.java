@@ -21,7 +21,7 @@ public class Label {
     @NotNull @Size(min = 1)
     private String name;
 
-    @Min(1900) @Max(2017)
+    @Min(1900) @Max(2018)
     private Integer yearFounded;
 
     public Long getId() {

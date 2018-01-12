@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface AlbumRepository extends JpaRepository <Album, Long> {
-    List<Album> findAlbumsByTitleContainingIgnoreCase(String title);
     List<Album> findAlbumsByYearOfReleaseBetween(Integer from, Integer to);
     List<Album> findAlbumsByTitleContainingIgnoreCaseAndYearOfReleaseBetween(String title, Integer from, Integer to);
 }

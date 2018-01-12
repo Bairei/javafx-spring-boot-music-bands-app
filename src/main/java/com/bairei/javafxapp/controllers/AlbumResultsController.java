@@ -35,12 +35,8 @@ public class AlbumResultsController {
 
     private AlbumService albumService;
 
-    private IntroController introController;
-
     @FXML
     private TableView<Album> albumTable;
-    @FXML
-    private TableColumn<Album, Long> albumIdColumn;
     @FXML
     private TableColumn<Album, String> albumNameColumn;
     @FXML
@@ -59,18 +55,12 @@ public class AlbumResultsController {
     public AlbumResultsController(){}
 
     @Autowired
-    public void setIntroController (IntroController introController){
-        this.introController = introController;
-    }
-
-    @Autowired
     public void setAlbumService (AlbumService albumService){
         this.albumService = albumService;
     }
 
     @FXML
     private void initialize(){
-        albumIdColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
         albumNameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTitle()));
         showAlbumDetails(null);
         albumTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showAlbumDetails(newValue));
@@ -91,7 +81,7 @@ public class AlbumResultsController {
             nameLabel.setText(album.getTitle());
             yearRecordedLabel.setText(Integer.toString(album.getYearOfRelease()));
             bandLabel.setText(album.getBand().getName());
-            genreLabel.setText(album.getGenre().name());
+            genreLabel.setText(album.getGenre().getName());
             labelLabel.setText(album.getLabel().getName());
             membersListView.setItems(FXCollections.observableArrayList(album.getMembers()));
         }
@@ -101,7 +91,6 @@ public class AlbumResultsController {
     private void handleDeleteButton(Event event) {
         Album selectedAlbum = albumTable.getSelectionModel().getSelectedItem();
         if (selectedAlbum != null){
-            log.info("sdfgsfdghhsdfgxcgfh");
             albumService.delete(selectedAlbum);
             albumTable.getItems().remove(selectedAlbum);
         } else {
